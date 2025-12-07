@@ -79,6 +79,22 @@ print(text)  # "Hej Python"
 text2 = "-".join(["2025", "12", "07"])
 print(text2)  # "2025-12-07"
 
+# `.find()` – Söka efter en delsträng i Python
+
+**Funktion:**  
+`.find()` används för att **hitta indexet** där en delsträng först förekommer i en sträng.  
+
+- Returnerar indexet (ett heltal) för den första förekomsten.  
+- Returnerar `-1` om delsträngen inte hittas.  
+- Strängar är immutabla; metoden ändrar **inte** originalsträngen.
+
+---
+
+## Syntax
+```python
+str.find(substring, start, end)
+
+
 # ⚠️ Viktigt att komma ihåg
 
 Strängar är immutabla → metoder som .replace(), .strip(), .upper() etc. skapar nya strängar.
