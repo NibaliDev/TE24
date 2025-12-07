@@ -1,56 +1,196 @@
-Djupgående Sammanfattning av Kursmaterialet (Markdown-format)
-Det är klokt att granska grundmaterialet, även med djup erfarenhet. Självlärda programmerare tenderar att använda de mest effektiva inbyggda metoderna, vilket kan leda till att man missar de manuella implementationsdetaljerna och specifika Python-idiom som ofta krävs i en introduktionskurs.
-Nedan följer en djupgående sammanfattning av de centrala koncepten från källorna, med särskild betoning på de punkter som är extra viktiga att repetera för provet.
-1. Grundläggande Programmering och Syntax
-Detta avsnitt täcker variabler, datatyper, operatorer och I/O.
-Matematiska Operatorer
-Säkerställ att du minns de specifika operatorerna för heltalsdivision (//) och restvärde (modulo, %). Dessa operatörer är en del av grundläggande träningsuppgifter.
-Input och Typkonvertering
-• input() läser alltid in data som en sträng.
-• Explicit konvertering med int() eller float() är nödvändig för att utföra beräkningar.
-• Kom ihåg att om användaren skriver text istället för siffror när konvertering till int eller float sker, kommer det att orsaka fel (vilket nämns som "normalt i början" i kursen).
-Utskrift och Formatering (F-strängar)
-F-strängar används för utskrift, och det är viktigt att kunna använda format-specifikationer som kontrollerar precision (t.ex. :.1f) samt den nyare syntaxen för debugging {x=}. Det är även relevant att kunna skriva ut variabler utan f-strängar, vilket testas i Uppgift 7.
-2. Datastrukturer
-Materialet behandlar de tre primära inbyggda datastrukturerna: Listor, Tuples och Dictionaries.
-A. Listor (Mutable Sequences)
-Listor kan ändras, stöder metoder som append() och pop(), samt tilldelning via index (a = 9).
-Kritiskt Fokus: Manuella Algoritmer
-Det mest kritiska konceptet att repetera är kravet på att manuellt implementera logiken för att hitta minsta, största och medelvärdet med hjälp av loopar och villkor. Källorna betonar att koden själv måste implementera detta steg för steg, istället för att använda inbyggda funktioner som min(), max(), och sum().
-Slicing och Iteration
-• Slicing används för att välja delar av listan (t.ex. x[2:5], x[:3], x[::2]) och för att skapa ytliga kopior (kop = a[:]).
-• Användningen av enumerate() är viktig för att iterera över en sekvens och samtidigt få både index (i) och värde (namn). Funktionen kan startas från 1 (start=1) för att skapa en numrerad utskrift.
-Unika Värden (Bevara Ordning)
-Repetera den specifika algoritmen för att ta bort dubbletter samtidigt som ordningen bevaras. Denna metod kräver användning av två datastrukturer:
-1. En set (sedda) för snabb koll av vilka element som redan har lagts till.
-2. En list (unik) där unika element läggs till i den ordning de påträffas först.
-B. Tuples (Immutable Sequences)
-Tuples är oföränderliga (immutabla) och kan inte ändras, läggas till eller tas bort element i efter att de har skapats.
-Fokusområden:
-• Immutabilitet: Försök att ändra ett element i en tuple (t.ex. t = 9) leder till ett felmeddelande.
-• Packing och Uppackning: Konceptet med tuple packing och unpacking är centralt för att tilldela flera variabler samtidigt (x, y = p).
-• Variabelswappning: Variabelbyte (a, b = b, a) är ett smidigt Python-idiom som internt utnyttjar denna packing/unpacking-mekanism.
-C. Dictionaries (Key-Value Storage)
-Dictionaries lagrar information i unika nyckel-värde-par och skapas med måsvingar {}. De stöder iteration över par med .items().
-Fokusområden:
-• Säkert Uppslag med .get(): Repetera metoden dictionary.get(nyckel, standardvärde). Den returnerar ett standardvärde (t.ex. "okänd") om nyckeln inte hittas, vilket är ett säkrare alternativ än att använda hakparenteser som skulle orsaka ett KeyError.
-• Frekvensräkning (Get-mönstret): Den standardiserade metoden för att räkna hur ofta element dyker upp (frekvensräkning) använder .get(t, 0) + 1 i en loop. Detta mönster gör att man kan initialisera en räknare till 0 för nya nycklar.
-• zip() och dict(): Du ska kunna använda zip() för att para ihop element från två listor till en lista av tupler, och sedan omvandla dessa par till en dictionary med dict(par).
-• Lista av Dictionaries: Kunskap om hur man loopar över en lista där varje element är en dictionary (t.ex. en klasslista) för att uppdatera värden, som att höja allas poäng med 1.
-3. Strängar och Stränghantering
-Strängar är sekvenser av tecken, och liksom tuples är de oföränderliga (immutabla).
-Fokusområden:
-• Immutabilitet i Praktiken (Kritiskt): Eftersom strängar är immutabla, leder försök att ändra ett tecken (t.ex. s = "r") till fel. För att byta ut ett tecken måste du konstruera en helt ny sträng (t.ex. s = "r" + s[1:]).
-• Slicing för Baklängesvändning: Repetera slicing-syntaxen s[::-1] för att vända en sträng baklänges.
-• Robust Jämförelse: Använd .casefold() vid jämförelser (t.ex. i Palindromkontroll) för en mer aggressiv konvertering till små bokstäver än .lower(), vilket säkerställer korrekthet även med specialtecken.
-• Praktiska Metoder: Du bör känna till och kunna tillämpa metoder som .strip(), .replace(), .count(), .endswith(), .startswith() samt hur man använder .split() och .join() för att växla mellan strängar och listor.
+🧠 Djupgående Sammanfattning av Kursmaterialet
 
---------------------------------------------------------------------------------
-Sammanfattning: Extra Viktiga Punkter att Repetera
-Som erfaren programmerare bör du fokusera på att bevisa din kunskap om de specifika implementeringsmetoderna som kursen kräver, snarare än att använda de snabbaste inbyggda funktionerna:
-1. Manuella Algoritmer: Kunna skriva koden för att hitta minsta, största, och medelvärde i en lista utan de inbyggda funktionerna.
-2. Orderbevarande Dubblettborttagning: Implementera metoden med en set och en list för att säkerställa att ordningen bevaras när dubbletter tas bort.
-3. Dictionary Idioms: Använda mönstret .get(key, 0) + 1 för frekvensräkning.
-4. Strängimmutabilitet: Visa förståelse för att man måste skapa en ny sträng för att "ändra" den.
-Dessa grundläggande, steg-för-steg-implementeringar är ofta de områden där en självlärd programmerare kan ha missat de exakta kraven för en introduktionskurs.
-Tänk på det som att lära dig skriva för hand igen: Du vet hur man använder en dator för att skriva ett dokument snabbt, men provet kräver att du visar att du behärskar varje enskild bokstavs form, exakt som det lärs ut från grunden.
+enligt kursens fokusområden och provkrav
+
+Det är klokt att repetera grunderna, även med lång erfarenhet. Självlärda programmerare tenderar att hoppa direkt till effektiva inbyggda metoder, men i en introduktionskurs förväntas man kunna implementera logiken manuellt och följa kursens idiom.
+
+Nedan följer en översikt i välstrukturerat Markdown-format, med fokus på de moment som kursen betonar mest.
+
+1. Grundläggande Programmering och Syntax
+Matematiska Operatorer
+
+Du ska behärska:
+
+Heltalsdivision: //
+
+Restvärde (modulo): %
+
+Dessa ingår i många grundläggande övningar.
+
+Input och Typkonvertering
+
+input() returnerar alltid en sträng.
+
+Typkonvertering krävs för beräkningar: int(), float().
+
+Fel uppstår om användaren skriver text när en siffra förväntas. Detta är normalt i början.
+
+Utskrift och Formatering (F-strängar)
+
+Du behöver kunna:
+
+F-strängar
+
+Format-specifikationer, t.ex.
+
+:.1f — kontroll av decimaler/precision
+
+:10.2f — fältbredd + precision
+
+Debugging-syntaxen {x=} (Python 3.8+)
+
+Utskrift även utan f-strängar (testas i t.ex. uppgift 7).
+
+2. Datastrukturer
+A. Listor (Mutable Sequences)
+
+Egenskaper:
+
+Muterbara
+
+Metoder: .append(), .pop()
+
+Tilldelning via index: a[2] = 9
+
+🔥 Kritisk Punkt: Manuella Algoritmer
+
+Du måste kunna implementera:
+
+Hitta minsta värde
+
+Hitta största värde
+
+Beräkna medelvärde
+
+Utan att använda min(), max(), eller sum().
+
+Slicing och Iteration
+
+Delar av listan: x[2:5], x[:3], x[::2]
+
+Kopiera lista: kop = a[:]
+
+enumerate() för index + värde (kan starta på 1: start=1)
+
+Unika Värden (Bevara Ordning)
+
+Du måste kunna algoritmen:
+
+Skapa en set för sedda element.
+
+Gå igenom listan och lägg till element i en ny lista endast om de inte setts tidigare.
+
+Ordningen ska bevaras.
+
+B. Tuples (Immutable Sequences)
+
+Egenskaper:
+
+Immutable: går inte att ändra efter skapande.
+
+Försök att ändra ger fel.
+
+Viktiga koncept:
+
+Packing/Unpacking
+Ex:
+
+x, y = p
+
+
+Variabelswappning
+
+a, b = b, a
+
+
+(använder tuple-packing internt)
+
+C. Dictionaries (Key-Value Storage)
+
+Egenskaper:
+
+Nycklar är unika
+
+Skapas med {}
+
+Viktiga Idiom
+Säkert Uppslag – .get()
+värde = dic.get(nyckel, "okänd")
+
+
+Undviker KeyError.
+
+Frekvensräkning – Get-mönstret
+freq[t] = freq.get(t, 0) + 1
+
+
+Standardmetod för counting.
+
+zip() + dict()
+par = list(zip(lista1, lista2))
+d = dict(par)
+
+Lista av Dictionaries
+
+Kunna iterera och uppdatera värden, t.ex. höja allas poäng med 1.
+
+3. Strängar och Stränghantering
+
+Strängar är immutabla, likt tuples.
+
+Viktiga koncept
+Immutabilitet i Praktiken
+
+Följande fungerar inte:
+
+s[0] = "r"
+
+
+Man måste konstruera en ny sträng:
+
+s = "r" + s[1:]
+
+Slicing för Baklängesvändning
+s[::-1]
+
+Robust Jämförelse
+
+Vid jämförelse för palindrom m.m. ska du använda:
+
+s.casefold()
+
+
+mer robust än .lower().
+
+Metoder att kunna:
+
+.strip()
+
+.replace()
+
+.count()
+
+.endswith()
+
+.startswith()
+
+.split() / .join()
+
+⭐ Sammanfattning: Extra Viktiga Punkter att Repetera
+
+Manuella Algoritmer
+Implementera minsta, största, och medelvärde utan inbyggda funktioner.
+
+Orderbevarande Dubblettborttagning
+Använd set + list för att bevara ordningen.
+
+Dictionary Idioms
+Speciellt frekvensräkning med .get(key, 0) + 1.
+
+Strängimmutabilitet
+Du kan inte ändra ett tecken i en sträng — skapa en ny.
+
+🎓 Avslutande kommentar
+
+Se det som att lära sig att skriva för hand igen:
+Du kan skriva snabbt med dator, men här måste du visa att du behärskar de exakta grundstegen — precis som kursen lär ut.
