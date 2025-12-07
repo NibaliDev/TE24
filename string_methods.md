@@ -91,9 +91,14 @@ print(text2)  # "2025-12-07"
 ---
 
 ## Syntax
-```python
+
 str.find(substring, start, end)
 
+# isX-metoder
+print("12345".isdigit()) 
+print("abc".isalpha()) 
+print("abc123".isalnum()) 
+print(" \t\n".isspace())
 
 # ⚠️ Viktigt att komma ihåg
 
