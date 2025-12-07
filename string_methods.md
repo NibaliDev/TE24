@@ -95,10 +95,10 @@ print(text2)  # "2025-12-07"
 str.find(substring, start, end)
 
 # isX-metoder
-print("12345".isdigit()) 
-print("abc".isalpha()) 
-print("abc123".isalnum()) 
-print(" \t\n".isspace())
+- print("12345".isdigit()) --> True
+- print("abc".isalpha()) --> True
+- print("abc123".isalnum()) --> True
+- print(" \t\n".isspace()) --> True
 
 # ⚠️ Viktigt att komma ihåg
 
