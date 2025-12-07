@@ -203,7 +203,10 @@ mer robust än .lower().
 3.  **Dictionary Idioms**Speciellt frekvensräkning med .get(key, 0) + 1.
     
 4.  **Strängimmutabilitet**Du kan inte ändra ett tecken i en sträng — skapa en ny.
-    
+
+# /n -     på ny rad
+
+# /t på -  tab
 
 🎓 Avslutande kommentar
 =======================
