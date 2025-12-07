@@ -11,3 +11,4 @@ width	10	Fältbredd
 ,	,	Tusenseparator
 precision	.2	Antal decimaler eller längd för strängar
 type	f, d, x, e, s …	Typ/format
+<img width="804" height="645" alt="2025-12-07 18_38_38-Window" src="https://github.com/user-attachments/assets/07ee880f-35e4-4d64-897f-209241a97e2e" />
